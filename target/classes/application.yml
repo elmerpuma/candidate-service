@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: candidate-service
+  profiles:
+    active: dev
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+jwt:
+  secret: ${JWT_SECRET:change-me}
+  expirationSeconds: ${JWT_EXP_SECONDS:86400}
+
+logging:
+  level:
+    root: INFO
+    com.company.clients: INFO
+    com.company.clients.security: DEBUG
+    org.springframework.security: DEBUG
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
